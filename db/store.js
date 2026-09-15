@@ -24,4 +24,33 @@ function createUser({ name, email }) {
   return user;
 }
 
-module.exports = { getAllUsers, getUserById, createUser };
+function updateUser(id, { name, email }) {
+  const user = getUserById(id);
+
+  if (!user) {
+    return undefined;
+  }
+
+  user.name = name;
+  user.email = email;
+  return user;
+}
+
+function deleteUser(id) {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index === -1) {
+    return undefined;
+  }
+
+  const [deleted] = users.splice(index, 1);
+  return deleted;
+}
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+};
