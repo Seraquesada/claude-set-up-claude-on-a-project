@@ -36,4 +36,21 @@ function updateUser(id, { name, email }) {
   return user;
 }
 
-module.exports = { getAllUsers, getUserById, createUser, updateUser };
+function deleteUser(id) {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index === -1) {
+    return undefined;
+  }
+
+  const [deleted] = users.splice(index, 1);
+  return deleted;
+}
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+};
